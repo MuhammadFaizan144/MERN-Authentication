@@ -2,64 +2,53 @@
   <nav class="container mx-auto flex justify-between items-center">
     <ul class="flex space-x-4">
       <li>
-        <a
-        href="/"
-        class="<%= currentPage === 'Index' ? 'bg-red-400' : 'hover:bg-red-400' %> hover:bg-red-400 py-2 px-4 rounded transition duration-300"
-        >Home</a
-        >
+        <a href="/"
+          class="<%= currentPage === 'Index' ? 'bg-red-400' : 'hover:bg-red-400' %> hover:bg-red-400 py-2 px-4 rounded transition duration-300">Home</a>
       </li>
       <% if(isLoggedIn){%>
         <li>
-          <a
-          href="/Homes"
-          class="<%= currentPage === 'Home' ? 'bg-red-400' : 'hover:bg-red-400' %> hover:bg-red-400 py-2 px-4 rounded transition duration-300"
-          >Home-List</a
-          >
+          <a href="/Homes"
+            class="<%= currentPage === 'Home' ? 'bg-red-400' : 'hover:bg-red-400' %> hover:bg-red-400 py-2 px-4 rounded transition duration-300">Home-List</a>
         </li>
         <li>
-          <a
-          href="/bookings"
-            class="<%= currentPage === 'bookings' ? 'bg-red-400' : 'hover:bg-red-400' %> hover:bg-red-400 py-2 px-4 rounded transition duration-300"
-            >Bookings</a
-          >
+          <a href="/bookings"
+            class="<%= currentPage === 'bookings' ? 'bg-red-400' : 'hover:bg-red-400' %> hover:bg-red-400 py-2 px-4 rounded transition duration-300">Bookings</a>
         </li>
         <li>
-          <a
-          href="/favourite"
-          class="<%= currentPage === 'favourite' ? 'bg-red-400' : 'hover:bg-red-400' %> hover:bg-red-400 py-2 px-4 rounded transition duration-300"
-          >Favourite</a
-          >
+          <a href="/favourite"
+            class="<%= currentPage === 'favourite' ? 'bg-red-400' : 'hover:bg-red-400' %> hover:bg-red-400 py-2 px-4 rounded transition duration-300">Favourite</a>
         </li>
         <li>
-          <a
-          href="/host/host-home-list"
-          class="<%= currentPage === 'hostHomeList' ? 'bg-red-400' : 'hover:bg-red-400' %> hover:bg-red-400 py-2 px-4 rounded transition duration-300"
-          >Host Home List</a
-          >
+          <a href="/host/host-home-list"
+            class="<%= currentPage === 'hostHomeList' ? 'bg-red-400' : 'hover:bg-red-400' %> hover:bg-red-400 py-2 px-4 rounded transition duration-300">Host
+            Home List</a>
         </li>
         <li>
-          <a
-          href="/host/add-home"
-          class="<%= currentPage === 'AddHome' ? 'bg-red-400' : 'hover:bg-red-400' %> hover:bg-red-400 py-2 px-4 rounded transition duration-300"
-          >Add Home</a
-          >
+          <a href="/host/add-home"
+            class="<%= currentPage === 'AddHome' ? 'bg-red-400' : 'hover:bg-red-400' %> hover:bg-red-400 py-2 px-4 rounded transition duration-300">Add
+            Home</a>
         </li>
         <% } %>
-        <% if(!isLoggedIn){%>
-      <li>
-        <a
-        href="/Login"
-        class="hover:bg-red-400 py-2 px-4 rounded transition duration-300"
-        >Login</a
-        >
-        <% }else{ %>
-          <form action="/logout" method="post">
-            <Button type="submit" class="hover:bg-red-400 py-2 px-4 rounded transition duration-300">
-              Logout
-            </Button>
-          </form>
-        <% } %>
-      </li>
+          <% if(!isLoggedIn){%>
+            <li>
+              <a href="/signup" 
+              class="hover:bg-red-400 py-2 px-4 rounded transition duration-300"
+              >SignUp</a>
+            </li>
+            <li>
+              <a href="/Login" 
+              class="hover:bg-red-400 py-2 px-4 rounded transition duration-300"
+              >Login</a>
+            </li>
+            <% }else{ %>
+              <li>
+                <form action="/logout" method="post">
+                  <Button type="submit" class="hover:bg-red-400 py-2 px-4 rounded transition duration-300">
+                    Logout
+                  </Button>
+                </form>
+              </li>
+              <% } %>
     </ul>
   </nav>
 </header>

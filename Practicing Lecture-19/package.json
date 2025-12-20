@@ -1,5 +1,5 @@
 {
-  "name": "practicing-lecture-14(2)",
+  "name": "practicing-lecture-19",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
@@ -16,6 +16,7 @@
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
+    "express-validator": "^7.3.1",
     "mongodb": "^6.20.0",
     "mongoose": "^8.19.2",
     "nodemon": "^3.1.10"

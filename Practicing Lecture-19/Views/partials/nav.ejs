@@ -26,6 +26,7 @@
         </li>
 
         <% if (isLoggedIn) { %>
+          <% if(user&&user.userType==='guest') {%>
           
             <li>
               <a
@@ -53,8 +54,8 @@
 
             <li>
               <a
-                href="/favourites"
-                class="<%= currentPage === 'favourites' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-4 rounded-lg transition duration-300 flex items-center"
+                href="/favourite"
+                class="<%= currentPage === 'favourite' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-4 rounded-lg transition duration-300 flex items-center"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -93,6 +94,7 @@
                 Bookings
               </a>
             </li>
+          <% } else {%>
             <li>
               <a
                 href="/host/host-home-list"
@@ -137,7 +139,7 @@
                 Add Home
               </a>
             </li>
-          
+          <% } %>
         <% } %>
       </ul>
 

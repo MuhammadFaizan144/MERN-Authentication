@@ -3,14 +3,16 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
 exports.getLogin = (req, res, next) => {
-  res.render("auth/login", { pageTitle: "Login", currentPage: "addhome", isLoggedIn: false, errors: [], oldInput: { email: "" } })
+  res.render("auth/login", { pageTitle: "Login", currentPage: "addhome", isLoggedIn: false, errors: [], oldInput: { email: "" },
+  user:{}, })
 }
 exports.getSignup = (req, res, next) => {
   res.render("auth/signup", {
     pageTitle: "SignUp", currentPage: "signup", isLoggedIn: false,
     errors: [],
     oldInput: { firstName: "", lastName: "", email: "", userType: "" },
-    userType: ""
+    // userType: "",
+    user:{},
   })
 }
 exports.postSignup = [
@@ -102,6 +104,7 @@ exports.postSignup = [
           isLoggedIn: false,
           errors: [err.message],
           oldInput: { firstName, lastName, email, password, userType },
+          user:{},
         })
       })
   }]
@@ -117,7 +120,7 @@ exports.postLogin = async (req, res, next) => {
       errors: ["Invalid Email"],
       oldInput: {
         email
-      }
+      },user:{},
     })
   }
   const isMatch = await bcrypt.compare(password, user.password);
@@ -129,7 +132,8 @@ exports.postLogin = async (req, res, next) => {
       errors: ["Invalid Password"],
       oldInput: {
         email
-      }
+      },
+      user:{},
     })
   }
   // console.log(req.body)

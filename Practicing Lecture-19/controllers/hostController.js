@@ -2,7 +2,12 @@ const { Result } = require("postcss")
 const Home = require("../models/home")
 
 exports.getAddHome = (req, res, next) => {
-  res.render("host/edit-home", { pageTitle: "Add Home", currentPage: "addhome", editing: false ,isLoggedIn:req.isLoggedIn})
+  res.render("host/edit-home", { 
+    pageTitle: "Add Home", 
+    currentPage: "addhome", 
+    editing: false ,
+    isLoggedIn:req.isLoggedIn
+    ,user:req.session.user,})
 }
 const registeredHome = []
 
@@ -20,7 +25,9 @@ exports.getHomeAdd = (req, res, next) => {
 exports.getHostHomeList = (req, res, next) => {
 
   Home.find().then(registeredHome => {
-    res.render("host/host-home-list", { registeredHome: registeredHome, pageTitle: "Host Home List", currentPage: "hostHomeList" ,isLoggedIn:req.isLoggedIn})
+    res.render("host/host-home-list", { registeredHome: registeredHome, pageTitle: "Host Home List", currentPage: "hostHomeList" ,isLoggedIn:req.isLoggedIn
+      ,user:req.session.user,
+    })
   })
 }
 exports.getEditHome = (req, res, next) => {
@@ -33,7 +40,9 @@ exports.getEditHome = (req, res, next) => {
       return res.redirect("/host/host-home-list")
     }
     console.log(homeId, editing, home)
-    res.render("host/edit-home", { home: home, pageTitle: "Edit your Home", currentPage: "addhome", editing: editing ,isLoggedIn:req.isLoggedIn})
+    res.render("host/edit-home", { home: home, pageTitle: "Edit your Home", currentPage: "addhome", editing: editing ,isLoggedIn:req.isLoggedIn,
+      user:req.session.user
+    })
 
   })
 }

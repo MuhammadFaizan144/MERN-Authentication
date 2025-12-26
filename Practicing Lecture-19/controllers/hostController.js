@@ -16,6 +16,7 @@ exports.getHomeAdd = (req, res, next) => {
   const { houseName, price, location, rating, photo } = req.body
   const home = new Home({ houseName, price, location, rating, photo })
   console.log(houseName,price,location,rating,photo)
+  console.log("request",req.file)
   home.save().then(() => {
     console.log("Home saved sccessfully")
   })

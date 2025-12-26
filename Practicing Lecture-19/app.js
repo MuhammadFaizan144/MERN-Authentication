@@ -1,7 +1,9 @@
 const express=require('express')
 const session=require('express-session')
+const multer=require('multer')
 const MongoDBStore=require('connect-mongodb-session')(session);
 const DB_PATH="mongodb+srv://fg7829098:faizanfk0309@cluster01.erroaal.mongodb.net/?appName=Cluster01"
+// const { default: mongoose } = require('mongoose')
 const app=express()
 const path=require('path')
 const rootDir=require('./utils/pathutils')
@@ -9,18 +11,18 @@ const storeRouter=require("./routes/storeRouter")
 const hostRouter=require("./routes/hostRouter")
 const authRouter=require("./routes/authRouter")
 const get404=require("./controllers/error")
-// const { default: mongoose } = require('mongoose')
 const mongoose=require('mongoose')
 app.set("view engine","ejs")
 app.set("views","views")
-app.use(express.static(path.join(rootDir,"public")))
 
 const store=new MongoDBStore({
   url:DB_PATH,
   collection:'sessions'
 })
 
+app.use(express.static(path.join(rootDir,"public")))
 app.use(express.urlencoded())
+app.use(multer().single('photo'))
 
 app.use(session({
   secret:"Hello Habibi",

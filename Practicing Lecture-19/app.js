@@ -57,6 +57,8 @@ const multerOption={
 app.use(express.static(path.join(rootDir,"public")))
 app.use(express.urlencoded())
 app.use(multer(multerOption).single('photo'))
+app.use('/uploads',express.static(path.join(rootDir,'uploads')))
+app.use('/host/uploads',express.static(path.join(rootDir,'uploads')))
 
 app.use(session({
   secret:"Hello Habibi",

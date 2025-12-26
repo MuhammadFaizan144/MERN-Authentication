@@ -20,6 +20,8 @@ const store=new MongoDBStore({
   collection:'sessions'
 })
 
+
+
 const randomString=(length)=>{
   const characters='abcdefghijklmnopqrstuvwxyz';
   let result='';
@@ -39,8 +41,17 @@ const storage=multer.diskStorage({
   }
 })
 
+const fileFilter=(req,file,cb)=>{
+  if(file.mimetype==='image/png' || file.mimetype==='image/jpg' || file.mimetype==='image/jpeg'){
+    cb(null,true) 
+  }else{
+    cb(null,false)
+  }
+}
+
 const multerOption={
-  storage
+  storage,
+  fileFilter
 }
 
 app.use(express.static(path.join(rootDir,"public")))

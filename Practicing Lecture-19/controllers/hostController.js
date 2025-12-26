@@ -13,10 +13,15 @@ const registeredHome = []
 
 exports.getHomeAdd = (req, res, next) => {
   // console.log(req.body)
-  const { houseName, price, location, rating, photo } = req.body
+  const { houseName, price, location, rating } = req.body
+  console.log(houseName,price,location,rating)
+  if(!req.file){
+    return res.status(400).send("no image provided")
+  }
+  const photo=req.file.path
   const home = new Home({ houseName, price, location, rating, photo })
-  console.log(houseName,price,location,rating,photo)
   console.log("request",req.file)
+
   home.save().then(() => {
     console.log("Home saved sccessfully")
   })

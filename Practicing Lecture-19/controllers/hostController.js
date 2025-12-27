@@ -1,6 +1,6 @@
 const { Result } = require("postcss")
 const Home = require("../models/home")
-
+const fs=require('fs')
 exports.getAddHome = (req, res, next) => {
   res.render("host/edit-home", { 
     pageTitle: "Add Home", 
@@ -61,8 +61,17 @@ exports.postEditHome = (req, res, next) => {
     home.rating = rating
     home.price = price
     if(req.file){
+      fs.unlink(home.photo,(err)=>{
+        if(err){
+          console.log('Error while deleting old image',err)
+        }else{
+          console.log('Old image deleted successfully')
+        }
+      })
       home.photo=req.file.path
-    }
+  }
+
+
     home.save().then(result => {
       console.log('Home updated', result)
     }).catch(err => {
